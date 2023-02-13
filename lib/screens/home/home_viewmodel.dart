@@ -8,6 +8,7 @@ class HomeViewModel extends BaseViewModel<HomeNavigator> {
   List<Room> rooms = [];
 
   void readRooms() {
+    print('rooms');
     DataBaseUtiles.ReadRoomFireStore().then((value) {
       rooms = value;
     }).catchError((onError) {

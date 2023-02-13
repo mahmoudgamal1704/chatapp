@@ -10,11 +10,10 @@ class MessageWidget extends StatelessWidget {
   Message message;
 
   MessageWidget(this.message);
-
   @override
   Widget build(BuildContext context) {
     var prov = Provider.of<MyProvider>(context);
-
+print(prov.myuser!.email);
     return prov.myuser!.id == message.senderId
         ? SenderMessage(message)
         : ReciveMessage(message);
@@ -29,14 +28,16 @@ class SenderMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int datemill = int.parse(message.dateTime);
+    int datemill = message.dateTime;
     var dt = DateTime.fromMillisecondsSinceEpoch(datemill);
     var date=DateFormat("hh:mm a").format(dt);
+    var messageday=DateFormat("dd/MM/yyyy").format(DateTime.fromMillisecondsSinceEpoch(datemill));
     return Container(
 margin: EdgeInsets.only(right: 10,top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          Center(child: Text(message.firstMessage ? messageday : ''),),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
             decoration: const BoxDecoration(
@@ -63,14 +64,16 @@ class ReciveMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int datemill = int.parse(message.dateTime);
+    int datemill = message.dateTime;
     var dt = DateTime.fromMillisecondsSinceEpoch(datemill);
     var date=DateFormat("hh:mm a").format(dt);
+    var messageday=DateFormat("dd/MM/yyyy").format(DateTime.fromMillisecondsSinceEpoch(datemill));
     return Container(
-      margin: EdgeInsets.only(right: 10,top: 5),
+      margin: EdgeInsets.only(left: 10,top: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          Center(child: Text(message.firstMessage ? messageday : ''),),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
             decoration: const BoxDecoration(
@@ -79,7 +82,12 @@ class ReciveMessage extends StatelessWidget {
                     topRight: Radius.circular(12),
                     topLeft: Radius.circular(12),
                     bottomRight: Radius.circular(12))),
-            child: Text(message.content),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Text(message.senderName),
+              Text(message.content)
+            ],),
 
           ),
           Text(date),

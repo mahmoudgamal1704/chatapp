@@ -192,7 +192,7 @@ class _CreateAccountScreenState extends BaseView<CreateAccountScreen,CreateAccou
   @override
   void goToHome(MyUser myuser) {
     // TODO: implement goToHome
-    var provider = Provider.of<MyProvider>(context,listen: false);
+    // var provider = Provider.of<MyProvider>(context,listen: false);
     Navigator.pushReplacementNamed(context, HomeScreen.routeName,
         arguments: myuser);
   }

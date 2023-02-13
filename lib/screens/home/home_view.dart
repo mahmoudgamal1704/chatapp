@@ -1,5 +1,7 @@
 import 'package:chatapp/base.dart';
 import 'package:chatapp/layout/roomwidget.dart';
+import 'package:chatapp/models/myuser.dart';
+import 'package:chatapp/providers/myprovider.dart';
 import 'package:chatapp/screens/addroom/addroom_screen.dart';
 import 'package:chatapp/screens/home/home_navigator.dart';
 import 'package:chatapp/screens/home/home_viewmodel.dart';
@@ -28,6 +30,9 @@ class _HomeScreenState extends BaseView<HomeScreen, HomeViewModel>
 
   @override
   Widget build(BuildContext context) {
+    var prov = Provider.of<MyProvider>(context);
+    print('${prov.myuser?.email} nhghghghg');
+    MyProvider();
     return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Stack(
@@ -66,21 +71,20 @@ class _HomeScreenState extends BaseView<HomeScreen, HomeViewModel>
               title: Text("Chat-App"),
             ),
             body: Container(
-              margin: EdgeInsets.only(top: 100,left: 20,right: 20),
+              margin: EdgeInsets.only(top: 100, left: 20, right: 20),
               child: Consumer<HomeViewModel>(
                 builder: (context, homeViewmodel, child) {
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                      mainAxisSpacing: 8,
-                      crossAxisSpacing: 8,
-                      childAspectRatio: 0.8
-
-                    ),
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 8,
+                        childAspectRatio: 0.8),
                     itemCount: homeViewmodel.rooms.length,
                     itemBuilder: (context, index) {
                       return RoomWidget(homeViewmodel.rooms[index]);
-                    },);
+                    },
+                  );
                 },
               ),
             ),

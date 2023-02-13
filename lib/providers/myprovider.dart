@@ -8,14 +8,18 @@ class MyProvider extends ChangeNotifier {
   late User? firebaseUser;
 
   MyProvider(){
+    print('update user');
     firebaseUser = FirebaseAuth.instance.currentUser;
+    print(firebaseUser?.email);
     if(firebaseUser !=null){
       initMyuser();
     }
+    print(myuser?.email ?? 'fff');
 
   }
 
-  void initMyuser ()async {
-    myuser = await DataBaseUtiles.ReadUserFromFireStore(firebaseUser!.uid??"");
+ void initMyuser () async{
+    myuser = await  DataBaseUtiles.ReadUserFromFireStore(firebaseUser!.uid??"");
+    print('${myuser!.email} ussssssssssssss');
   }
 }
