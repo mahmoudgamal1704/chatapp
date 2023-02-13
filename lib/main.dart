@@ -1,5 +1,6 @@
 import 'package:chatapp/providers/myprovider.dart';
 import 'package:chatapp/screens/addroom/addroom_screen.dart';
+import 'package:chatapp/screens/chat/chat_view.dart';
 import 'package:chatapp/screens/createaccount/create_account.dart';
 import 'package:chatapp/screens/home/home_view.dart';
 import 'package:chatapp/screens/loginscreen/loginview.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName : (context) => LoginScreen(),
         HomeScreen.routeName : (context) => HomeScreen(),
         AddRoomScreen.routeName : (context) => AddRoomScreen(),
+        ChatScreen.routeName : (context) => ChatScreen(),
       },
       debugShowCheckedModeBanner: false,
     );
