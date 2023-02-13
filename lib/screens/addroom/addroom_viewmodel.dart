@@ -12,6 +12,8 @@ class AddRoomViewModel extends BaseViewModel<AddRoomNavigator> {
         .then((value) {
           navigator!.hideDialog();
           navigator!.showMessage('Room Added');
+          navigator!.hideDialog();
+          navigator!.RoomCreated();
           print("Room Added");
     })
         .catchError((err) {

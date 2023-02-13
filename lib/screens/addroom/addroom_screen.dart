@@ -162,4 +162,10 @@ late RoomCategory selectedcateg ;
     // TODO: implement initViewModel
     return AddRoomViewModel();
   }
+
+  @override
+  void RoomCreated() {
+    // TODO: implement RoomCreated
+    Navigator.pop(context);
+  }
 }

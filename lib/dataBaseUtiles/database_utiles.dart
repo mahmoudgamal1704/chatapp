@@ -35,4 +35,9 @@ class DataBaseUtiles {
     var myuser = user.data();
     return myuser;
   }
+
+  static Future<List<Room>> ReadRoomFireStore() async{
+    QuerySnapshot<Room> snaprooms =await  getRoomsCollection().get();
+   return snaprooms.docs.map((e) => e.data()).toList();
+  }
 }
